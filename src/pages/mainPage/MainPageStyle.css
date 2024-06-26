@@ -1,0 +1,69 @@
+.mainPage__filter {
+    margin-top: 40px;
+}
+
+.mainPage__filter h1 {
+    text-align: center;
+    font-size: 2em;
+}
+
+.mainPage__filter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0 40px;
+    text-align: center;
+    align-items: center;
+}
+
+.mainPage__filter-grid input {
+    padding: 10px 0px;
+    border-radius: 15px;
+    font-size: 0.7em;
+}
+
+.mainPage__filter-grid-raiting label {
+    margin: 0 10px;
+}
+
+.mainPage__filter-grid-raiting input {
+    margin: 0 0 0 5px;
+}
+
+.btn_submit {
+    grid-column: 4;
+    grid-row: span 2;
+    padding: 10px 0;
+    border: none;
+    background-color: gray;
+    border-radius: 15px;
+    cursor: pointer;
+    align-self: end;
+}
+
+.checkGenre {}
+
+/* TODO grid */
+.movies {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.movie {
+    max-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.default-poster {
+    width: 200px;
+    background-color: gray;
+    height: 300px;
+}

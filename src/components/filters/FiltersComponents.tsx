@@ -4,13 +4,13 @@ import { SelectedComponent } from "../selected/SelectedComponent";
 export const FiltersComponents = () => {
   const [genres, setGenres] = useState();
   const [rating, setRating] = useState();
-  const [year, setYear] = useState();
+  const [year, setYear] = useState<number | null>();
+  
+  const changeYear = (e: any) => {
+    return e.target.value > 1990 ? setYear(e.target.value) : setYear(null);
+  }
+  
 
-
-
-  useEffect(() => {
-
-  }, [genres, rating, year]);
 
   return (
     <>
@@ -22,16 +22,16 @@ export const FiltersComponents = () => {
           <span>По году выпуска</span>
           <span>По рейтингу</span>
           <SelectedComponent />
-          <input type="number" min={1990} />
+          <input type="number" min={1990} onChange={changeYear}/>
           <div className="mainPage__filter-grid-raiting">
             <label>
                 От
-                <input type="number" />
+                <input type="number" min={0}/>
             </label>
             <br />
             <label>
                 До
-                <input type="number" />
+                <input type="number" max={10}/>
             </label>
           </div>
           <button className="btn_submit">Отправить</button>

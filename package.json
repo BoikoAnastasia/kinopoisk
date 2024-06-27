@@ -1,7 +1,7 @@
 {
   "name": "kinopoisk",
   "version": "0.1.0",
-  "homepage": "https://BoikoAnastasia.github.io/kinopoisk",
+  "homepage": "https://boikoanastasia.github.io/kinopoisk/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.4",

@@ -1,6 +1,8 @@
 // react
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+//images
+import defaultPoter from '../../images/poster.png'
 // type
 import { TMovie, TPoster } from "../../d";
 //styles
@@ -18,12 +20,12 @@ export const FavoriteMovie = ({setIdMovie}:{setIdMovie: (id: number) => void}) =
   //check url/previewUrl in movie
   const urlPoster = (posterArr: TPoster) => {
     if (posterArr?.url === undefined && posterArr?.previewUrl === undefined) {
-      return <div className="default-poster"></div>;
+      return <img className="default-poster" src={defaultPoter} alt="default poster"/>;
     } else {
       return posterArr?.url !== undefined ? (
-        <img src={posterArr?.url} alt="постер"></img>
+        <img src={posterArr?.url} alt="постер"/>
       ) : (
-        <img src={posterArr?.previewUrl} alt="постер"></img>
+        <img src={posterArr?.previewUrl} alt="постер"/>
       );
     }
   };

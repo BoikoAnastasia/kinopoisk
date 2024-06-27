@@ -35,33 +35,33 @@ export const MainPage = ({
 
   //Заглушка, так как данные с кинопоиска ограниченные по запросам
   //можно раскомментировать и тогда на странице будут фильмы-заглушки 
-  useEffect(() => {
-    setMovies(
-      Array.from({ length: 50 }, (_, index) => ({
-        id: index + 1,
-        name: `Фильм ${index + 1}`,
-        alternativeName: `Alternative Name ${index + 1}`,
-        poster: {
-          url: undefined,
-          previewUrl: undefined,
-        },
-        description: `Описание фильма ${
-          index + 1
-        }. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
-        rating: {
-          p: Math.floor(Math.random() * 100) / 10,
-          imdb: Math.floor(Math.random() * 100) / 10,
-          filmCritics: Math.floor(Math.random() * 100) / 10,
-          russianFilmCritics: Math.floor(Math.random() * 100) / 10,
-          await: Math.floor(Math.random() * 100) / 10,
-        },
-        year: 1980 + Math.floor(Math.random() * 40), // Годы с 1980 по 2020
-        genres: {
-          name: [`Жанр ${(index % 5) + 1}`, `Жанр ${((index + 2) % 5) + 1}`],
-        },
-      }))
-    );
-  }, []);
+  // useEffect(() => {
+  //   setMovies(
+  //     Array.from({ length: 50 }, (_, index) => ({
+  //       id: index + 1,
+  //       name: `Фильм ${index + 1}`,
+  //       alternativeName: `Alternative Name ${index + 1}`,
+  //       poster: {
+  //         url: undefined,
+  //         previewUrl: undefined,
+  //       },
+  //       description: `Описание фильма ${
+  //         index + 1
+  //       }. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+  //       rating: {
+  //         p: Math.floor(Math.random() * 100) / 10,
+  //         imdb: Math.floor(Math.random() * 100) / 10,
+  //         filmCritics: Math.floor(Math.random() * 100) / 10,
+  //         russianFilmCritics: Math.floor(Math.random() * 100) / 10,
+  //         await: Math.floor(Math.random() * 100) / 10,
+  //       },
+  //       year: 1980 + Math.floor(Math.random() * 40), // Годы с 1980 по 2020
+  //       genres: {
+  //         name: [`Жанр ${(index % 5) + 1}`, `Жанр ${((index + 2) % 5) + 1}`],
+  //       },
+  //     }))
+  //   );
+  // }, []);
 
   //fecth request
   const fetchMovies = async () => {
@@ -106,7 +106,7 @@ export const MainPage = ({
   //check url/previewUrl in movie
   const urlPoster = (posterArr: TPoster) => {
     if (posterArr?.url === undefined && posterArr?.previewUrl === undefined) {
-      return <img className="default-poster" src={defaultPoter}/>;
+      return <img className="default-poster" src={defaultPoter} alt="default poster"/>;
     } else {
       return posterArr?.url !== undefined ? (
         <img src={posterArr?.url} alt="постер"/>

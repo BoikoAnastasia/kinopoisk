@@ -28,7 +28,7 @@ export const getMovieRequest = async (
     ).then((response) => response.json());
     return response;
   } catch (error) {
-    console.log("Ошибка");
+    console.log(error);
   }
 };
 

@@ -16,7 +16,6 @@ export const MoviePage = ({ id }: { id: number }) => {
     const fetchMovie = async () => {
       const response = await getMovieFromId(id);
       const data = await response;
-      console.log(data);
       setFilms(data);
     };
     fetchMovie();

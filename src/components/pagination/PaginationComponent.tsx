@@ -14,11 +14,16 @@ export const PaginationComponent = ({setPageNumber}:{setPageNumber: (page: numbe
         <Pagination sx={{
           "& .MuiPagination-ul":{
             justifyContent: "center",
-            marginTop: "100px"
+            marginTop: "100px",
           },
+          
           "& .MuiPaginationItem-root":{
             color: "black",
             backgroundColor: "white",
+            '&:hover': {
+            background: "gray",
+            color: "white"
+          },
           },
           "& .MuiPaginationItem-root.Mui-selected":{
             backgroundColor: "gray",

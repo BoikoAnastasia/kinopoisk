@@ -6,8 +6,6 @@ const options = {
   },
 };
 
-
-//TODO env
 export const getMovieRequest = async (
   pageNumber: number = 1,
   year: string = "",
@@ -37,7 +35,7 @@ export const getMovieRequest = async (
 export const getMovieFromId = async (id: number) => {
   try {
     const response = await fetch(
-      `https://api.kinopoisk.dev/v1.4/movie/${id}`,
+      `${process.env.REACT_APP_OPEN_API}/${id}`,
       options
     ).then((response) => response.json());
     return response;

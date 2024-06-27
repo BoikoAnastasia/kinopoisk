@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { TArrayGenre } from "../../d";
+import "../ComponentsStyles.css";
 
 export const SelectedComponent = () => {
-  //TODO выборку
   const valuesGenres = [
     "аниме",
     "биография ",
@@ -40,17 +40,27 @@ export const SelectedComponent = () => {
   const [selectedValues, setSelectedValues] = useState<TArrayGenre[]>([]);
 
   const handleChange = (e: any) => {
-    setSelectedValues([...selectedValues, {
-      id: e.target.options[e.target.selectedIndex].index, 
-      name: e.target.selectedOptions[0].text}]
-    )
+    const addValue = {
+      id: e.target.options[e.target.selectedIndex].index,
+      name: e.target.selectedOptions[0].text,
+    };
+    if (!selectedValues.some((x) => x.name === addValue.name)) {
+      setSelectedValues([
+        ...selectedValues,
+        {
+          id: e.target.options[e.target.selectedIndex].index,
+          name: e.target.selectedOptions[0].text,
+        },
+      ]);
+    }
   };
-  //TODO убирает несколько вариантов + сделать что нельзя добавлять тот же
-  const removeValueFromSelectedValues = (e:any) => {
-    setSelectedValues(selectedValues.filter(x => x.id !== Number(e.target.value)))
-  }
 
-
+  const removeValueFromSelectedValues = (e: any) => {
+    console.log(selectedValues);
+    setSelectedValues(
+      selectedValues.filter((x) => x.id !== Number(e.target.value))
+    );
+  };
 
   return (
     <div>
@@ -62,14 +72,19 @@ export const SelectedComponent = () => {
         ))}
       </select>
       <div className="checkGenre">
-      {selectedValues &&
-        selectedValues.map((genre) => (
+        {selectedValues &&
+          selectedValues.map((genre) => (
             <label className="checkbox">
-              <input type="checkbox" value={genre.id} checked onChange={removeValueFromSelectedValues}/>
+              <input
+                type="checkbox"
+                value={genre.id}
+                checked
+                onChange={removeValueFromSelectedValues}
+              />
               {genre.name}
             </label>
-        ))}
-        </div>
+          ))}
+      </div>
     </div>
   );
 };

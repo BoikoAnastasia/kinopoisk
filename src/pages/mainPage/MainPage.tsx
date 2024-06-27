@@ -28,15 +28,19 @@ export const MainPage = ({
   const [year, setYear] = useState<string>();
   const [selectedValues, setSelectedValues] = useState<TArrayGenre[]>([]);
   const [genres, setGenres] = useState("");
+  const [error, setError] = useState(false);
 
   //fecth request
   const fetchMovies = async () => {
+    if(error) {
+      return;
+    }
     if (selectedValues.length > 0) {
       setGenres(CreateStringFromArray(selectedValues));
     }
-    const responce = await getMovieRequest(pageNumber, year, rating, genres);
-    const data = await responce;
-    setMovies(data.docs);
+      const responce = await getMovieRequest(pageNumber, year, rating, genres);
+      const data = await responce;
+      setMovies(data.docs);
   };
 
   //navigation on movie
@@ -48,7 +52,7 @@ export const MainPage = ({
   //get movies
   useEffect(() => {
     fetchMovies();
-  }, [pageNumber, movies, fetchMovies]);
+  }, [pageNumber, movies]);
 
   //check url/previewUrl in movie
   const urlPoster = (posterArr: TPoster) => {
@@ -66,6 +70,7 @@ export const MainPage = ({
   return (
     <>
       <FiltersComponents
+        setError={setError}
         setRating={setRating}
         rating={rating}
         setYear={setYear}

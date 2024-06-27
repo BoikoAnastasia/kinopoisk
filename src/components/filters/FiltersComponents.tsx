@@ -1,48 +1,79 @@
+// react
+import { useState } from "react";
 // pages
 import { SelectedComponent } from "../selected/SelectedComponent";
 // types
 import { TArrayGenre } from "../../d";
+//styles
+import { TextField } from "@mui/material";
 
 export const FiltersComponents = ({
   setRating,
+  setError,
   rating,
   selectedValues,
   setYear,
   setSelectedValues,
   fetchMovies,
 }: {
-  setRating: (rating: {start: string, end: string}) => void;
-  rating: {start: string, end: string};
+  setRating: (rating: { start: string; end: string }) => void;
+  setError: (error: boolean) => void;
+  rating: { start: string; end: string };
   setYear: (year: string) => void;
   selectedValues: TArrayGenre[];
   setSelectedValues: (selectedValues: TArrayGenre[]) => void;
-  fetchMovies: () => void
+  fetchMovies: () => void;
 }) => {
+  const [yearError, setYearError] = useState("");
+  const [ratingError, setRatingError] = useState("");
+
   const changeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
-    return setYear(e.target.value);
+    const year = e.target.value;
+
+    if (
+      year === "" ||
+      (Number(year) >= 1990 && Number(year) <= new Date().getFullYear())
+    ) {
+      setYearError("");
+      setYear(e.target.value);
+      setError(false);
+    } else {
+      setYearError("Год должен быть больше 1990 и меньше текущего");
+      setError(true);
+    }
   };
 
   const changeRaitingStart = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value < "0" || e.target.value > "10") {
-      //TODO
-      return;
-    } else {
+    if (
+      e.target.value === "" ||
+      (e.target.value >= "0" && e.target.value <= "10")
+    ) {
+      setError(false);
+      setRatingError("");
       setRating({
         ...rating,
         start: e.target.value,
       });
+    } else {
+      setRatingError("Установите рейтинг в пределах 0 - 10");
+      setError(true);
     }
   };
 
   const changeRaitingEnd = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value < "0" || e.target.value > "10") {
-      //TODO
-      return;
-    } else {
+    if (
+      e.target.value === "" ||
+      (e.target.value >= "0" && e.target.value <= "10")
+    ) {
+      setRatingError("");
+      setError(false);
       setRating({
         ...rating,
         end: e.target.value,
       });
+    } else {
+      setError(true);
+      setRatingError("Установите рейтинг в пределах 0 - 10");
     }
   };
 
@@ -54,28 +85,55 @@ export const FiltersComponents = ({
           <span>По жанру</span>
           <span>По году выпуска</span>
           <span>По рейтингу</span>
-          <button className="btn_submit" onClick={fetchMovies}>Отправить</button>
+          <button className="btn_submit" onClick={fetchMovies}>
+            Отправить
+          </button>
           <SelectedComponent
             selectedValues={selectedValues}
             setSelectedValues={setSelectedValues}
           />
-          <input type="number" min={1990} onChange={changeYear} />
+
+          <TextField
+            id="standard-error"
+            helperText={yearError}
+            error={yearError !== ""}
+            sx={{
+              "& .MuiOutlinedInput-input": {
+                background: "white",
+              },
+            }}
+            type="number"
+            onChange={changeYear}
+          />
+
           <div className="mainPage__filter-grid-raiting">
             <label>
               От
-              <input
+              <TextField
+                id="standard-error"
+                error={ratingError !== ""}
+                helperText={ratingError}
+                sx={{
+                  "& .MuiOutlinedInput-input": {
+                    background: "white",
+                  },
+                }}
                 type="number"
-                min={0}
-                max={10}
                 onChange={changeRaitingStart}
               />
             </label>
             <label>
               До
-              <input
+              <TextField
+                id="standard-error"
+                error={ratingError !== ""}
+                helperText={ratingError}
+                sx={{
+                  "& .MuiOutlinedInput-input": {
+                    background: "white",
+                  },
+                }}
                 type="number"
-                max={10}
-                min={0}
                 onChange={changeRaitingEnd}
               />
             </label>

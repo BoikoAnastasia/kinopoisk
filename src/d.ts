@@ -24,3 +24,8 @@ export type TMovie = {
   year: number;
   genres: TGenres;
 };
+
+export type TArrayGenre = {
+  id: number;
+  name: string;
+}

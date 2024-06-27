@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { TArrayGenre } from "../../d";
 
 export const SelectedComponent = () => {
   //TODO выборку
@@ -36,16 +37,24 @@ export const SelectedComponent = () => {
     "фэнтези",
     "церемония",
   ];
-  const [selectedValues, setSelectedValues] = useState<any[]>([]);
+  const [selectedValues, setSelectedValues] = useState<TArrayGenre[]>([]);
 
   const handleChange = (e: any) => {
-    const values = [...e.target.selectedOptions].map((opt) => opt.value);
-    setSelectedValues([...selectedValues, values]);
+    setSelectedValues([...selectedValues, {
+      id: e.target.options[e.target.selectedIndex].index, 
+      name: e.target.selectedOptions[0].text}]
+    )
   };
+  //TODO убирает несколько вариантов + сделать что нельзя добавлять тот же
+  const removeValueFromSelectedValues = (e:any) => {
+    setSelectedValues(selectedValues.filter(x => x.id !== Number(e.target.value)))
+  }
+
+
 
   return (
-    <>
-      <select multiple onChange={handleChange}>
+    <div>
+      <select onChange={handleChange}>
         {valuesGenres.map((select, index) => (
           <option key={index} value={select}>
             {select}
@@ -55,12 +64,12 @@ export const SelectedComponent = () => {
       <div className="checkGenre">
       {selectedValues &&
         selectedValues.map((genre) => (
-            <label>
-              <input type="checkbox" />
-              {genre}
+            <label className="checkbox">
+              <input type="checkbox" value={genre.id} checked onChange={removeValueFromSelectedValues}/>
+              {genre.name}
             </label>
         ))}
         </div>
-    </>
+    </div>
   );
 };

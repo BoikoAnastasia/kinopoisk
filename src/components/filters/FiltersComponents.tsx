@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SelectedComponent } from "../selected/SelectedComponent";
 
 export const FiltersComponents = () => {
@@ -8,6 +8,10 @@ export const FiltersComponents = () => {
   
   const changeYear = (e: any) => {
     return e.target.value > 1990 ? setYear(e.target.value) : setYear(null);
+  }
+
+  const changeGenres = () => {
+    return 
   }
   
 
@@ -21,20 +25,19 @@ export const FiltersComponents = () => {
           <span>По жанру</span>
           <span>По году выпуска</span>
           <span>По рейтингу</span>
+          <button className="btn_submit">Отправить</button>
           <SelectedComponent />
           <input type="number" min={1990} onChange={changeYear}/>
           <div className="mainPage__filter-grid-raiting">
             <label>
                 От
-                <input type="number" min={0}/>
+                <input type="number" min={0} max={10}/>
             </label>
-            <br />
             <label>
                 До
-                <input type="number" max={10}/>
+                <input type="number" max={10} min={0}/>
             </label>
           </div>
-          <button className="btn_submit">Отправить</button>
         </div>
       </div>
     </>

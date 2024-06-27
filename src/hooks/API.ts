@@ -2,9 +2,11 @@ const options = {
   method: "GET",
   headers: {
     accept: "application/json",
-    "X-API-KEY": `11ZABTG-XVW4FX3-HQD3ARG-S5KJC2N`,
+    "X-API-KEY": `${process.env.REACT_APP_API_KEY}`,
   },
 };
+
+
 //TODO env
 export const getMovieRequest = async (
   pageNumber: number = 1,
@@ -23,7 +25,7 @@ export const getMovieRequest = async (
   }
   try {
     const response = await fetch(
-      `https://api.kinopoisk.dev/v1.4/movie?page=${pageNumber}&limit=50${year}${rating.start}${rating.end}${genres}`,
+      `${process.env.REACT_APP_OPEN_API}?page=${pageNumber}&limit=50${year}${rating.start}${rating.end}${genres}`,
       options
     ).then((response) => response.json());
     return response;

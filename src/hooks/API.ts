@@ -6,29 +6,19 @@ const options = {
   },
 };
 //TODO env
-// export const getMovieRequest = async (pageNumber:number) => {
-//   try {
-//     // fetch('https://api.kinopoisk.dev/v1.4/movie?page=1&limit=10&type=&year=&releaseYears.start=&rating.kp=&genres.name=%D0%B2%D1%84%D1%8B%D0%B2%D1%84%D1%8B%D0%B2', options)
-//     const response = await fetch(
-//       `https://api.kinopoisk.dev/v1.4/movie?page=${pageNumber}&limit=50`,
-//       options
-//     )
-//       .then((response) => response.json())
-//       .catch((err) => console.error(err));
-//       return response;
-//   } catch (error) {
-//     console.log("Ошибка");
-//   }
-// };
-
-
-
-export const getMovieRequest = async (pageNumber:number = 1, year: string = "", rating: {start: string, end: string} = {start: "", end: ""}, genres: string = "") => {
+export const getMovieRequest = async (pageNumber: number = 1, year: string = "", rating: {start: string, end: string} = {start: "", end: ""}, genres: string = "") => {
+  if(year !== "") {
+    year = `releaseYears.start=${year}&`
+  }
+  if(rating.start !== ""){
+    rating.start = `rating.kp=${rating.start}&`
+  }
+  if(rating.end !== ""){
+    rating.end = `rating.kp=${rating.end}&`
+  }  
   try {
     const response = await 
-    // fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${pageNumber}&limit=50`
-    fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${pageNumber}&limit=50&releaseYears.start=${year}&rating.kp=${rating.start}&rating.kp=${rating.end}&${genres}`
-      ,options
+    fetch(`https://api.kinopoisk.dev/v1.4/movie?page=${pageNumber}&limit=50${year}${rating.start}${rating.end}${genres}`,options
     )
       .then((response) => response.json())
       .catch((err) => console.error(err));

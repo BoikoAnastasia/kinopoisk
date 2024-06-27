@@ -1,3 +1,4 @@
+//styles
 import { Pagination, Stack } from "@mui/material";
 import '../ComponentsStyles.css';
 

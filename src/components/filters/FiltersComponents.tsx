@@ -1,6 +1,7 @@
+// pages
 import { SelectedComponent } from "../selected/SelectedComponent";
+// types
 import { TArrayGenre } from "../../d";
-import { CreateStringFromArray } from "../../hooks/CreateStringFromArray";
 
 export const FiltersComponents = ({
   setRating,
@@ -10,18 +11,18 @@ export const FiltersComponents = ({
   setSelectedValues,
   fetchMovies,
 }: {
-  setRating: (rating: any) => void;
+  setRating: (rating: {start: string, end: string}) => void;
   rating: {start: string, end: string};
   setYear: (year: string) => void;
   selectedValues: TArrayGenre[];
   setSelectedValues: (selectedValues: TArrayGenre[]) => void;
   fetchMovies: () => void
 }) => {
-  const changeYear = (e: any) => {
-    return e.target.value > 1990 ? setYear(e.target.value) : setYear("");
+  const changeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    return setYear(e.target.value);
   };
 
-  const changeRaitingStart = (e: any) => {
+  const changeRaitingStart = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value < "0" || e.target.value > "10") {
       //TODO
       return;
@@ -33,7 +34,7 @@ export const FiltersComponents = ({
     }
   };
 
-  const changeRaitingEnd = (e: any) => {
+  const changeRaitingEnd = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.value < "0" || e.target.value > "10") {
       //TODO
       return;
@@ -44,14 +45,6 @@ export const FiltersComponents = ({
       });
     }
   };
-
-  // const postSearchData = () => {
-  //   if(selectedValues === null) {
-  //     getMovieRequest(rating, year);
-  //   }else{
-  //     getMovieRequest(rating, year, CreateStringFromArray(selectedValues));
-  //   }
-  // };
 
   return (
     <>

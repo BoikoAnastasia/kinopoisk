@@ -1,4 +1,6 @@
+//types
 import { TArrayGenre } from "../../d";
+// css
 import "../ComponentsStyles.css";
 
 export const SelectedComponent = ({
@@ -43,7 +45,7 @@ export const SelectedComponent = ({
     "церемония",
   ];
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const addValue = {
       id: e.target.options[e.target.selectedIndex].index,
       name: e.target.selectedOptions[0].text,
@@ -59,8 +61,7 @@ export const SelectedComponent = ({
     }
   };
 
-  const removeValueFromSelectedValues = (e: any) => {
-    console.log(selectedValues);
+  const removeValueFromSelectedValues = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValues(
       selectedValues.filter((x) => x.id !== Number(e.target.value))
     );

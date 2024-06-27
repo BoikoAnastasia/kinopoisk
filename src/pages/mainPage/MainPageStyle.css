@@ -40,9 +40,6 @@
     cursor: pointer;
 }
 
-.checkGenre {}
-
-/* TODO grid */
 .movies {
     display: flex;
     justify-content: space-around;

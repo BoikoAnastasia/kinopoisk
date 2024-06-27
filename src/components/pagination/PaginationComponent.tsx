@@ -13,14 +13,15 @@ export const PaginationComponent = ({setPageNumber}:{setPageNumber: (page: numbe
       <Stack spacing={2} >
         <Pagination sx={{
           "& .MuiPagination-ul":{
-            justifyContent: "center"
+            justifyContent: "center",
+            marginTop: "100px"
           },
           "& .MuiPaginationItem-root":{
             color: "black",
             backgroundColor: "white",
           },
           "& .MuiPaginationItem-root.Mui-selected":{
-            backgroundColor: "gray",    // Серый фон при нажатии
+            backgroundColor: "gray",
             color: "white",  
           }
         }} count={10} shape="rounded" color="primary"  onChange={handleChange} />

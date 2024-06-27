@@ -1,6 +1,18 @@
-.header{
+.header__content{
     padding: 40px 20px;
     background-color: #141414;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.header-link{
+    color: white;
+    text-decoration: none;
 }
 
 .footer{

@@ -1,6 +1,6 @@
 export type TPoster = {
-  url: string;
-  previewUrl: string;
+  url: string | undefined;
+  previewUrl: string | undefined;
 };
 export type TGenres = {
   name: string[];
@@ -23,6 +23,7 @@ export type TMovie = {
   rating: TRating;
   year: number;
   genres: TGenres;
+  isFavorite?: boolean;
 };
 
 export type TArrayGenre = {

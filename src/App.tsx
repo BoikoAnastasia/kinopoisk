@@ -7,6 +7,7 @@ import { Header } from "./hocs/Header";
 import { Footer } from "./hocs/Footer";
 import {MoviePage} from "./pages/moviePage/MoviePage";
 import { NotFoundPage } from "./pages/notFoundPage/NotFoundPage";
+import { FavoriteMovie } from "./pages/favoriteMovie.tsx/FavoriteMovie";
 // css
 import "./App.css";
 
@@ -20,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage setIdMovie={setIdMovie}/>}/>
           <Route path="/movie/:id" element={<MoviePage id={idMovie} />}/>
+          <Route path="/favorite" element={<FavoriteMovie setIdMovie={setIdMovie}/>}/>
           <Route path="*" element={<NotFoundPage/>}/>
         </Routes>
       </div>

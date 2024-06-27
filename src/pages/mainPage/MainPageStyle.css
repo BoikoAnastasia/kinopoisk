@@ -63,3 +63,11 @@
     background-color: gray;
     height: 300px;
 }
+
+.favoriteIcon{
+    cursor: pointer;
+}
+
+.pink{
+    color: pink;
+}

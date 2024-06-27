@@ -1,5 +1,12 @@
-# Getting Started with Create React App
+# Для запуска приложения
 
+Склонировать проект в vs code.
+Перейти в папку с проектом.
+В терминале набрать "npm i".
+После установки всех пакетов, набрать "npm start".
+Любуемся проектом.
+
+# Инструкция по умолчанию
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

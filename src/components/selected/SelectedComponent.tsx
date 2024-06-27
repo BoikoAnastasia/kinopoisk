@@ -1,8 +1,13 @@
-import { useState } from "react";
 import { TArrayGenre } from "../../d";
 import "../ComponentsStyles.css";
 
-export const SelectedComponent = () => {
+export const SelectedComponent = ({
+  selectedValues,
+  setSelectedValues,
+}: {
+  selectedValues: TArrayGenre[];
+  setSelectedValues: (selectedValues : TArrayGenre[]) => void;
+}) => {
   const valuesGenres = [
     "аниме",
     "биография ",
@@ -37,7 +42,6 @@ export const SelectedComponent = () => {
     "фэнтези",
     "церемония",
   ];
-  const [selectedValues, setSelectedValues] = useState<TArrayGenre[]>([]);
 
   const handleChange = (e: any) => {
     const addValue = {
